@@ -36,4 +36,7 @@ def display_result(result):
     '''
     print(f"Cups: {result[0]:.2f} Tablespoons: {result[1]:.2f} Teaspoons: {result[2]:.2f}")
 
+
+# Show the menu to start the programming.  Note, it is common
+# practice in python to use a main function here.
 show_menu()
