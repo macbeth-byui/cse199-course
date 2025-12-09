@@ -57,6 +57,6 @@ How will modularity and problem decomposition affect your personal project this 
 
 ## Solution
 
-* [main.py](training/T1-Modularity_and_Project_Decomposition/main.py)
+* [main.py](main.py)
 
-* [conversions.py](training/T1-Modularity_and_Project_Decomposition/conversions.py)
+* [conversions.py](conversions.py)
