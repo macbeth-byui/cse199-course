@@ -45,7 +45,7 @@ In this example, we will create a tool to convert measurements in cups, tablespo
 
 1. Convert the code in `main.py` into a function called `show_menu`.  Call the `show_menu` function.  Run the program.
 
-1. Use modularity to implement the program according to the diagram above.  Create functions `convert_cups`, `convert_tbsp`, and `convert_tsp` into a file `conversions.py`.  Each function should return a tuple `(cups, tbsp, tsp)`.
+1. Create functions `convert_cups`, `convert_tbsp`, and `convert_tsp` into a file `conversions.py`.  Each function should return a tuple `(cups, tbsp, tsp)`.
 
 1. Call the `convert` functions written in `conversions.py`.  Remember to use the `import` statements.  Run the `main.py` program.
 
