@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-a---command-line-skills-and-project-structure">Training A - Command Line Skills and Project Structure</h1>
+<h2 dir="auto" id="background">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">It is important to know where your files are on your computer:</p>
+<ul dir="auto">
+<li dir="auto">Documents organized by class and/or project - Synched Cloud Storage (e.g. OneDrive) is encouraged</li>
+<li dir="auto">Code organized by class and/or project - Recommend that you do not put in Synched Cloud Storage.  Use GitHub instead.</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">Most Integrated Development Environment (IDE) tools have a preferred method of working with code:</p>
+<ul dir="auto">
+<li dir="auto">Visual Studio Code - Open a folder containing a single class or project</li>
+<li dir="auto">JetBrains - Open a project file that is self-contained in a single project</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">Project structure usually follows a pattern (this will vary based on programming language and/or framework used).  Within your dedicated project folder, you will likely have the following:</p>
+<ul dir="auto">
+<li dir="auto"><code>README.md</code> - A markdown file that contains information about your project.</li>
+<li dir="auto"><code>.gitignore</code> - A text file that contains a list of all files and folders that you don't want included in Git/GitHub.  You will want to put files that contain secret keys and build folders in here.</li>
+<li dir="auto"><code>\src</code> - Sometimes its useful to organize your code files in this folder.  Often additional sub-folders are needed for larger projects.</li>
+<li dir="auto"><code>\tests</code> - Sometimes its useful to put tests in a separate folder.  In some languages, its easier to add tests directly to your existing code files.</li>
+<li dir="auto"><code>\assets</code> - Data files (including database files), pictures, music, and other files used by your software.</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">The <code>PLAY</code> button in an IDE is convienant, but it is good to know what is happening behind the scenes.  Learn how to use the terminal.</p>
+</li>
+</ul>
+<table dir="auto">
+<thead dir="auto">
+<tr dir="auto">
+<th>Description</th>
+<th>Terminal Command</th>
+</tr>
+</thead>
+<tbody dir="auto">
+<tr dir="auto">
+<td>What directory am I in?</td>
+<td><code>pwd</code></td>
+</tr>
+<tr dir="auto">
+<td>What is in my directory?</td>
+<td><code>ls</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I change directories?</td>
+<td><code>cd &lt;folder&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I move back a directory?</td>
+<td><code>cd ..</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I create a new directory?</td>
+<td><code>mkdir &lt;folder&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I delete a file?</td>
+<td><code>rm &lt;file&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I remove an empty directory?</td>
+<td><code>rmdir &lt;folder&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I rename a file?</td>
+<td><code>mv &lt;oldfile&gt; &lt;newfile&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I quickly display a file?</td>
+<td><code>cat &lt;file&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I open the current folder in Visual Studio Code?</td>
+<td><code>code .</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I run a python program?</td>
+<td></td>
+</tr>
+<tr dir="auto">
+<td></td>
+<td>Win: <code>py &lt;file.py&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td></td>
+<td>Mac\Linux: <code>python3 &lt;file.py&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td>How do I install a python library?</td>
+<td></td>
+</tr>
+<tr dir="auto">
+<td></td>
+<td>Win: <code>py -m pip install &lt;library&gt;</code></td>
+</tr>
+<tr dir="auto">
+<td></td>
+<td>Mac\Linux: <code>pip3 install &lt;library&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 dir="auto" id="example">Example</h2>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Open a terminal and create a folder to store all of your code for classes and/or projects.  Do <strong>not</strong> put this folder in a place that is auto-backed up using a tool like OneDrive.</p>
+</li>
+<li dir="auto">
+<p dir="auto">In the terminal, create a sub-folder for your project in your code folder.  Change directory into that folder after you create it.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Start Visual Studio Code in your current project folder.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create a <code>README.md</code> and a <code>.gitignore</code> file in your project</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create a file called <code>main.py</code> and write code to display <code>Hello World</code>.  Run your program from the command line.</p>
+</li>
+<li dir="auto">
+<p dir="auto">From the terminal, display the list of files in your project folder.</p>
+</li>
+<li dir="auto">
+<p dir="auto">From the terminal, rename the file <code>main.py</code> to <code>hello.py</code>.  Re-display the list of files in your project folder and re-run your program from the terminal.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create a file called <code>secret.txt</code> and put a secret code inside of it.  Add <code>secret.txt</code> to your <code>.gitignore</code> file.</p>
+</li>
+<li dir="auto">
+<p dir="auto">From the terminal, delete the <code>secret.txt</code> file and remove it from the <code>.gitignore</code> file.</p>
+</li>
+</ol>
+<h2 dir="auto" id="discussion">Discussion</h2>
+<p dir="auto">Why is organization important for you in this project and your future academic and personal projects?</p>
+
+</body>
+</html>
