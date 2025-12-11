@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-b---modularity-and-project-decomposition">Training B - Modularity and Project Decomposition</h1>
+<h2 dir="auto" id="background">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">When solving a problem, break it up into parts.  How will you calculate something?  How will you read information from the user?  How many different scenarios do you need to handle?</p>
+</li>
+<li dir="auto">
+<p dir="auto">In software, we want to take the individual parts and place them in separate functions and separate files.  Separate functions provide the ability for reuse.</p>
+</li>
+<li dir="auto">
+<p dir="auto">In Python, if you put a function in a different file, you need to import that function when you call it.  The format is:</p>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-keyword">from</span> file_name <span class="hljs-keyword">import</span> function_name  <span class="hljs-comment"># Don&#x27;t include the .py </span>
+</code></pre>
+</li>
+<li dir="auto">
+<p dir="auto">Benefits:</p>
+<ul dir="auto">
+<li dir="auto">Reuse functions</li>
+<li dir="auto">You can test a single function</li>
+<li dir="auto">Implement only part of the software and it still runs</li>
+<li dir="auto">Easier to find functions in large code bases</li>
+<li dir="auto">Multiple team members can modify different files at the same time</li>
+</ul>
+</li>
+</ul>
+<h2 dir="auto" id="example">Example</h2>
+<p dir="auto">In this example, we will create a tool to convert measurements in cups, tablespoons, and teaspoons.  Our goal is to implement the following function diagram:</p>
+<p dir="auto"><img src="function_diagram.drawio.png" alt="Function Diagram" data-src="function_diagram.drawio.png"></p>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Copy the following code into a file called <code>main.py</code>:</p>
+<pre><code class="code-line language-python" dir="auto">choice = <span class="hljs-literal">None</span>
+<span class="hljs-keyword">while</span> choice != <span class="hljs-string">&quot;4&quot;</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1) Convert cups&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;2) Convert tablespoons&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;3) Convert teaspoons&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;4) Quit&quot;</span>)
+    choice = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;&gt; &quot;</span>)
+    <span class="hljs-keyword">if</span> choice == <span class="hljs-string">&quot;1&quot;</span>:
+        cups = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Enter the number of cups: &quot;</span>))
+    <span class="hljs-keyword">elif</span> choice == <span class="hljs-string">&quot;2&quot;</span>:
+        tbsp = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Enter the number of tablespoons: &quot;</span>))
+    <span class="hljs-keyword">elif</span> choice == <span class="hljs-string">&quot;3&quot;</span>:
+        tsp = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Enter the number of teaspoons: &quot;</span>))
+</code></pre>
+</li>
+<li dir="auto">
+<p dir="auto">Convert the code in <code>main.py</code> into a function called <code>show_menu</code>.  Call the <code>show_menu</code> function.  Run the program.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create functions <code>convert_cups</code>, <code>convert_tbsp</code>, and <code>convert_tsp</code> into a file <code>conversions.py</code>.  Each function should return a tuple <code>(cups, tbsp, tsp)</code>.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Call the <code>convert</code> functions written in <code>conversions.py</code>.  Remember to use the <code>import</code> statements.  Run the <code>main.py</code> program.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create a function called <code>display_results</code> that will take the <code>(cups, tbsp, tsp)</code> into the format:  <code>Cups: #.## Tablespoons: #.## Teaspoons: #.##</code>.  Run the <code>main.py</code> program.</p>
+</li>
+</ol>
+<h2 dir="auto" id="discussion">Discussion</h2>
+<p dir="auto">How will modularity and problem decomposition affect your personal project this semester?</p>
+<h2 dir="auto" id="solution">Solution</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto"><a href="main.py">main.py</a></p>
+</li>
+<li dir="auto">
+<p dir="auto"><a href="conversions.py">conversions.py</a></p>
+</li>
+</ul>
+
+</body>
+</html>

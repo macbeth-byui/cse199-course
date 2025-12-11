@@ -1,3 +1,5 @@
+# CSE 199 - Training B
+
 def convert_cups(cups):
     '''
     Convert cups to tablespoons and teaspoons

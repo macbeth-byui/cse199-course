@@ -1,4 +1,4 @@
-# Training 1 - Modularity and Project Decomposition
+# Training B - Modularity and Project Decomposition
 
 ## Background
 
