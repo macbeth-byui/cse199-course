@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-c---git--github">Training C - Git &amp; GitHub</h1>
+<h2 dir="auto" id="background">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">Git is a version control tool that is used for configuration management of software files.</p>
+<ul dir="auto">
+<li dir="auto">The collection of files is called a repository.</li>
+<li dir="auto">A new or changed file is not added to the repository until the developer commit's it.</li>
+<li dir="auto">The repository maintains the history of all commits added to the repository.</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">GitHub is a place to share Git repositories in the cloud.</p>
+<ul dir="auto">
+<li dir="auto">You can share commits from your computer into the cloud by pushing.</li>
+<li dir="auto">You can merge commits from the cloud into your computer by pulling.</li>
+<li dir="auto">Useful for team projects or using multiple computers for development.</li>
+<li dir="auto">It's usually best to use the IDE to publish to GitHub.  This will automatically create the repository, commit the files, and publish to GitHub.  Make sure your <code>.gitignore</code> is setup properly first.</li>
+</ul>
+</li>
+</ul>
+<p dir="auto"><img src="workflow.drawio.png" alt="workflow" data-src="workflow.drawio.png"></p>
+<ul dir="auto">
+<li dir="auto">Working on Teams
+<ul dir="auto">
+<li dir="auto">To avoid putting broken or unfinished code into the repository, consider using a branch.</li>
+<li dir="auto">You will commit, pull, and push with your branch until it works.  When finished, you will merge your branch for the whole team to use.</li>
+</ul>
+</li>
+</ul>
+<p dir="auto"><img src="workflow_team.drawio.png" alt="workflow" data-src="workflow_team.drawio.png"></p>
+<ul dir="auto">
+<li dir="auto">Common Git Commands:</li>
+</ul>
+<table dir="auto">
+<thead dir="auto">
+<tr dir="auto">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody dir="auto">
+<tr dir="auto">
+<td><code>git clone &lt;url&gt;</code></td>
+<td>Copy a shared repository from GitHub to your computer.</td>
+</tr>
+<tr dir="auto">
+<td><code>git init</code></td>
+<td>Create a new repository on your computer.</td>
+</tr>
+<tr dir="auto">
+<td><code>git add &lt;file&gt;</code></td>
+<td>Stage new or modified file in preparation to commit to your repository.</td>
+</tr>
+<tr dir="auto">
+<td><code>git add .</code></td>
+<td>Stage all new and modified files in preparation to commit to your repository.</td>
+</tr>
+<tr dir="auto">
+<td><code>git commit -m &lt;message&gt;</code></td>
+<td>Commit all staged files to the repository.</td>
+</tr>
+<tr dir="auto">
+<td><code>git pull</code></td>
+<td>Merge all changes from GitHub into the repository on your computer.</td>
+</tr>
+<tr dir="auto">
+<td><code>git push</code></td>
+<td>Publish all changes from the repository on your computer to GitHub.</td>
+</tr>
+<tr dir="auto">
+<td><code>git push -u origin main</code></td>
+<td>Used to push the very first time to GitHub.</td>
+</tr>
+<tr dir="auto">
+<td><code>git remote add origin &lt;url&gt;</code></td>
+<td>Specify the GitHub url associated with the repository on your computer.</td>
+</tr>
+<tr dir="auto">
+<td><code>git status</code></td>
+<td>Report showing which files need to be committed.</td>
+</tr>
+<tr dir="auto">
+<td><code>git log --oneline</code></td>
+<td>Report showing all commits made to the repository.</td>
+</tr>
+<tr dir="auto">
+<td><code>git revert &lt;commit&gt;</code></td>
+<td>To undo a commit of a specific commit.</td>
+</tr>
+<tr dir="auto">
+<td><code>git rm --cached &lt;file&gt;</code></td>
+<td>Remove a file from the repository but keep a copy in your folder.</td>
+</tr>
+<tr dir="auto">
+<td><code>git checkout -b &lt;name&gt;</code></td>
+<td>Create a new branch in the repository on your computer and open it.</td>
+</tr>
+<tr dir="auto">
+<td><code>git checkout &lt;name&gt;</code></td>
+<td>Open a branch you already created in the repository on your computer.</td>
+</tr>
+<tr dir="auto">
+<td><code>git checkout main</code></td>
+<td>Open the main branch in the respository on your computer.</td>
+</tr>
+<tr dir="auto">
+<td><code>git push -u origin &lt;name&gt;</code></td>
+<td>Used to push a branch for the first time to GitHub.</td>
+</tr>
+<tr dir="auto">
+<td><code>git rebase main</code></td>
+<td>Used to merge changes from the main branch into your branch.</td>
+</tr>
+<tr dir="auto">
+<td><code>git merge &lt;name&gt;</code></td>
+<td>Used to merge changes from your branch into the main branch.</td>
+</tr>
+<tr dir="auto">
+<td><code>git branch -d &lt;name&gt;</code></td>
+<td>Used to delete a branch after it has been merged.</td>
+</tr>
+<tr dir="auto">
+<td><code>git config --global user.name &lt;your name&gt;</code></td>
+<td>Set your name in the configuration on your computer.</td>
+</tr>
+<tr dir="auto">
+<td><code>git config --global user.email &lt;your email&gt;</code></td>
+<td>Set your email in the configuration on your computer.</td>
+</tr>
+</tbody>
+</table>
+<h2 dir="auto" id="example">Example</h2>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Install Git on your computer: <a href="https://git-scm.com/">https://git-scm.com/</a></p>
+</li>
+<li dir="auto">
+<p dir="auto">Set your name and email into the Git configuration.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create a GitHub account: <a href="https://github.com/">https://github.com/</a></p>
+</li>
+<li dir="auto">
+<p dir="auto">Make sure you have a <code>README.md</code> and a <code>.gitignore</code> file in the top folder of your project.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Open your project in Visual Studio Code and publish your project as a public repository in GitHub.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Make a change to your project and from the terminal:</p>
+<ul dir="auto">
+<li dir="auto">View the status of changes</li>
+<li dir="auto">Stage your change</li>
+<li dir="auto">View the status of changes</li>
+<li dir="auto">Commit your change</li>
+<li dir="auto">View the log to see your commit</li>
+<li dir="auto">Push your change</li>
+<li dir="auto">Verify the change in GitHub</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">Repeat the previous step but use the built-in tools in Visual Studio Code.</p>
+</li>
+</ol>
+<h2 dir="auto" id="discussion">Discussion</h2>
+<p dir="auto">What will the benefits be of dilligently using Git and GitHub with your personal project.</p>
+
+</body>
+</html>
