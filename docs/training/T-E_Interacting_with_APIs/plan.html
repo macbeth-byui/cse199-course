@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-e---json-and-file-based-storage">Training E - JSON and File Based Storage</h1>
+<h2 dir="auto" id="background">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">In the same way that it is common to save JSON data to a file, it is also very common to retrieve JSON data from a remote server.</p>
+</li>
+<li dir="auto">
+<p dir="auto">An API server is a web server that receives HTTP requests (e.g. GET, POST) for information.  The information is sent back in the HTTP response with JSON data in the payload.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Some API servers cost money and/or require a secret key.  Make sure the file that contains your secret key is always placed in the <code>.gitignore</code> file.  However, many API's exist that are free and anonymous ot use.</p>
+</li>
+<li dir="auto">
+<p dir="auto">The <code>requests</code> library in Python makes it really easy to send HTTP requests, receive responses, and extract the JSON data.  To install, you need to use the Python module PIP (Pip Installs Packages):</p>
+<ul dir="auto">
+<li dir="auto">Windows: <code>py -m pip install requests</code></li>
+<li dir="auto">Mac\Linux: <code>pip3 install requests</code></li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">To read data from a server, call the <code>get</code> function with your URL.  To extract the JSON data and convert it to a dictionary or list, use the <code>json</code> function.  You can then use loops and indexing to find the data that you desire.</p>
+</li>
+</ul>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-keyword">import</span> requests
+
+response = requests.get(api_url)
+data = response.json()
+
+<span class="hljs-built_in">print</span>(data)
+</code></pre>
+<h2 dir="auto" id="example">Example</h2>
+<ol dir="auto">
+<li dir="auto">Copy the following code into a file called <code>main.py</code>:</li>
+</ol>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-comment"># URL for flights over Idaho:  </span>
+<span class="hljs-comment"># https://opensky-network.org/api/states/all?lamin=41.988&amp;lomin=-117.243&amp;lamax=49.001&amp;lomax=-111.043</span>
+
+<span class="hljs-comment"># Guide for processing Airplane JSON data:</span>
+<span class="hljs-comment"># https://openskynetwork.github.io/opensky-api/rest.html#flights-by-aircraft</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Callsign Origin          Longitude  Latitude   Altitude (ft)   Velocity (mph)&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;-------- --------------- ---------- ---------- --------------- --------------&quot;</span>)
+
+    <span class="hljs-comment"># print(f&quot;{callsign:&lt;8} {origin:&lt;15} {longitude:&lt;10} {latitude:&lt;10} {altitude:&lt;15} {velocity:&lt;14}&quot;)</span>
+
+</code></pre>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Open the URL in the code using a Web Browser to see the JSON data.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Install the <code>requests</code> package.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Use the <code>requests</code> library to read the JSON data using the URL.  Print out the results.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Pull out the list of flights in the data.  Print out the results.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Loop through each flight.  Pull out the Callsign, Country of Origin, Longitude, Latitude, Barometric Altitude, and Velocity.  Ensure your variable names match with the print statement in the code.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Convert the altitude from meters to feet by multiplying by 3.28084.  Convert the velocity to miles per hour by multiplying by 2.236936.  If necessary check to ensure that the altitude and velocity are not equal to None.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Search for the callsign on <a href="https://www.flightaware.com/">https://www.flightaware.com/</a> to verify some of the planes.</p>
+</li>
+</ol>
+<h2 dir="auto" id="discussion">Discussion</h2>
+<p dir="auto">What API's might be useful in your project?  If you can't think of any, what API might be useful to you in a future project?</p>
+<h2 dir="auto" id="solution">Solution</h2>
+<ul dir="auto">
+<li dir="auto"><a href="main.py">main.py</a></li>
+</ul>
+
+</body>
+</html>
