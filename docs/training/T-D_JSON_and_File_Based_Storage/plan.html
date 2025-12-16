@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-d---json-and-file-based-storage-1">Training D - JSON and File Based Storage</h1>
+<h2 dir="auto" id="background-1">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">If we don't save data (e.g. file, database), then when we exit, all information is lost because memory is cleared.</p>
+</li>
+<li dir="auto">
+<p dir="auto">How we can store data into a file:</p>
+<ul dir="auto">
+<li dir="auto">Write data in <code>CSV</code> (Comma Separated Value) format with each row representing a record</li>
+<li dir="auto">Write data in a formatted <code>JSON</code> (Javascript Object Notation) or <code>XML</code> (Extended Markup Language).</li>
+<li dir="auto">Write data (frequently configuration data) in <code>TOML</code> (Tom's Obvious, Minimal Language) or <code>YAML</code> (YAML Ain't Markup Language)</li>
+<li dir="auto">Write data in binary format (compressed space) using libraries like <code>pickle</code></li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">The <code>JSON</code> format is considered human-readable and is commonly used to store and transfer information.</p>
+</li>
+<li dir="auto">
+<p dir="auto">We can represent a <code>dictionary</code> (or <code>hashmap</code>) in JSON using curly braces, colons, and commas:</p>
+</li>
+</ul>
+<pre><code class="code-line language-json" dir="auto"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;temp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">67</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;sky&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cloudy&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;pressure&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1021.67</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul dir="auto">
+<li dir="auto">We can represent a list of records by using a <code>list</code> of <code>dictionary</code> objects.  The list is represented with square brackets and commas:</li>
+</ul>
+<pre><code class="code-line language-json" dir="auto"><span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;temp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">67</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;sky&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cloudy&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;pressure&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1021.67</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;temp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">54</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;sky&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;rain&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;pressure&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1020.67</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;temp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">71</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;sky&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;sunny&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;pressure&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1023.67</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h2 dir="auto" id="example-1">Example</h2>
+<ol dir="auto">
+<li dir="auto">Copy the following code into a file called <code>main.py</code>:</li>
+</ol>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">bucket_list</span>):
+    activity = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;What do you want to add to your bucket list? &quot;</span>)
+    year = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;What year do you want to do this? &quot;</span>))
+    item = {<span class="hljs-string">&quot;activity&quot;</span>  : activity,
+            <span class="hljs-string">&quot;year&quot;</span>      : year,
+            <span class="hljs-string">&quot;completed&quot;</span> : <span class="hljs-literal">False</span>}
+    bucket_list.append(item)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">show</span>(<span class="hljs-params">bucket_list</span>):
+    <span class="hljs-keyword">for</span> i, item <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(bucket_list):
+        mark = <span class="hljs-string">&quot;*&quot;</span> <span class="hljs-keyword">if</span> item[<span class="hljs-string">&quot;completed&quot;</span>] <span class="hljs-keyword">else</span> <span class="hljs-string">&quot; &quot;</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">{i+<span class="hljs-number">1</span>}</span>. [<span class="hljs-subst">{mark}</span>] - <span class="hljs-subst">{item[<span class="hljs-string">&quot;activity&quot;</span>].title()}</span> (<span class="hljs-subst">{item[<span class="hljs-string">&quot;year&quot;</span>]}</span>)&quot;</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">complete</span>(<span class="hljs-params">bucket_list</span>):
+    show(bucket_list)
+    choice = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Mark which item complete? &quot;</span>))
+    bucket_list[choice-<span class="hljs-number">1</span>][<span class="hljs-string">&quot;completed&quot;</span>] = <span class="hljs-literal">True</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">load</span>():
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">save</span>(<span class="hljs-params">bucket_list</span>):
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Welcome to your bucket list!&quot;</span>)
+    bucket_list = []
+    choice = <span class="hljs-literal">None</span>
+    <span class="hljs-keyword">while</span> choice != <span class="hljs-string">&quot;E&quot;</span>:
+        choice = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;\n(A)dd (S)how (C)omplete (E)xit &gt; &quot;</span>)
+        <span class="hljs-keyword">match</span> choice.upper():
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;A&quot;</span> : add(bucket_list)
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;S&quot;</span> : show(bucket_list)
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;C&quot;</span> : complete(bucket_list)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    main()
+</code></pre>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Run the program and observe how it works and how it does not save data after you exit.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Implement the <code>save</code> function.  You will need to import the <code>json</code> package.  Format the JSON data so it has a 4 space indentation.  Call the <code>save</code> function after any modification of the the <code>bucket_list</code> (list of dictionaries).</p>
+</li>
+<li dir="auto">
+<p dir="auto">Run the program and add a bucket list item.  Open the <code>bucket.json</code> file when it is created.  Keep adding items and marking some of them complete.  Observe how <code>bucket.json</code> changes and is &quot;human-readable&quot;.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Implement the <code>load</code> function.  Include a <code>try</code> and <code>except</code> block in case the file does not exist.  If the file does not exist, return an empty list.  Otherwise, read the JSON data and convert it a list of dictionaries again.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Run the program again.  Add some bucket list items.  Exit the program and restart.  Notice that the bucket list is populated again.</p>
+</li>
+</ol>
+<h2 dir="auto" id="discussion-1">Discussion</h2>
+<p dir="auto">Where might you use a JSON file in one of your projects?</p>
+<h2 dir="auto" id="solution-1">Solution</h2>
+<ul dir="auto">
+<li dir="auto"><a href="main.py">main.py</a></li>
+</ul>
+
+</body>
+</html>
