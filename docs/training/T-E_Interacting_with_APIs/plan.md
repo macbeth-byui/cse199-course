@@ -1,4 +1,4 @@
-# Training E - JSON and File Based Storage
+# Training E - Interacting with APIs
 
 ## Background
 
