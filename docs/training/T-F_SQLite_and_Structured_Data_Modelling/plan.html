@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-f---sqlite--structured-data-modelling">Training F - SQLite &amp; Structured Data Modelling</h1>
+<h2 dir="auto" id="background">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">Databases are a great way to store, modify, and search large amounts of data in your software.</p>
+</li>
+<li dir="auto">
+<p dir="auto">There are databases based on SQL (Structured Query Language) and Key-Value databases.  JSON is a simple example of a Key-Value database.</p>
+</li>
+<li dir="auto">
+<p dir="auto">SQL databases work with tables of information.  Each row represents one entry and each column represents one attribute for each entry.  Consider the example table below that represents grades:</p>
+</li>
+</ul>
+<table dir="auto">
+<thead dir="auto">
+<tr dir="auto">
+<th style="text-align:center">grade_id</th>
+<th>name</th>
+<th>class</th>
+<th>grade</th>
+</tr>
+</thead>
+<tbody dir="auto">
+<tr dir="auto">
+<td style="text-align:center">1</td>
+<td>Bob</td>
+<td>CSE 210</td>
+<td>95</td>
+</tr>
+<tr dir="auto">
+<td style="text-align:center">2</td>
+<td>Tim</td>
+<td>CSE 210</td>
+<td>84.2</td>
+</tr>
+<tr dir="auto">
+<td style="text-align:center">3</td>
+<td>Sue</td>
+<td>CSE 212</td>
+<td>92.3</td>
+</tr>
+</tbody>
+</table>
+<ul dir="auto">
+<li dir="auto">We can create and use this table using SQL commands:</li>
+</ul>
+<table dir="auto">
+<thead dir="auto">
+<tr dir="auto">
+<th>Action</th>
+<th>SQL Command</th>
+</tr>
+</thead>
+<tbody dir="auto">
+<tr dir="auto">
+<td>Create Database</td>
+<td><code>CREATE TABLE IF NOT EXISTS Grades (grade_id INT PRIMARY KEY AUTOINCREMENT, name TEXT, course TEXT, grade FLOAT);</code></td>
+</tr>
+<tr dir="auto">
+<td>Insert Row</td>
+<td><code>INSERT INTO Grades (name, course, grade) VALUES ('Bob', 'CSE 210', 95);</code></td>
+</tr>
+<tr dir="auto">
+<td>Delete Row</td>
+<td><code>DELETE FROM Grades WHERE grade_id = 2;</code></td>
+</tr>
+<tr dir="auto">
+<td>Update Row</td>
+<td><code>UPDATE Grades SET grade = 93 WHERE grade_id = 3;</code></td>
+</tr>
+<tr dir="auto">
+<td>Query All Rows</td>
+<td><code>SELECT * FROM Grades;</code></td>
+</tr>
+<tr dir="auto">
+<td>Query CSE 210</td>
+<td><code>SELECT name, grade FROM Grades WHERE course = 'CSE 210';</code></td>
+</tr>
+</tbody>
+</table>
+<ul dir="auto">
+<li dir="auto">Python has native support for SQLite.  No installations are needed.  The database is stored in a file with your Python code.</li>
+</ul>
+<table dir="auto">
+<thead dir="auto">
+<tr dir="auto">
+<th>Action</th>
+<th>Python Command</th>
+</tr>
+</thead>
+<tbody dir="auto">
+<tr dir="auto">
+<td>Open or Create Database</td>
+<td><code>connection = sqlite3.connect(&quot;grades.db&quot;)</code></td>
+</tr>
+<tr dir="auto">
+<td>Get the DB <code>cursor</code></td>
+<td><code>cursor = connection.cursor()</code></td>
+</tr>
+<tr dir="auto">
+<td>Run SQL Command</td>
+<td><code>cursor.execute(&quot;SQL Command ? ?&quot;, (Value1, Value2))</code></td>
+</tr>
+<tr dir="auto">
+<td>Get Results from Query</td>
+<td><code>rows = cursor.fetchall()</code></td>
+</tr>
+<tr dir="auto">
+<td>Commit Changes to DB</td>
+<td><code>connection.commit()</code></td>
+</tr>
+<tr dir="auto">
+<td>Close Database</td>
+<td><code>connection.close()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 dir="auto" id="example">Example</h2>
+<ol dir="auto">
+<li dir="auto">Copy the following code into a file called <code>main.py</code>:</li>
+</ol>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-keyword">import</span> sqlite3
+
+<span class="hljs-comment"># Connect to the database</span>
+connection = <span class="hljs-literal">None</span>
+cursor = <span class="hljs-literal">None</span>
+
+<span class="hljs-comment"># Create the table if it doesn&#x27;t already exist</span>
+
+
+
+choice = <span class="hljs-literal">None</span>
+<span class="hljs-keyword">while</span> choice != <span class="hljs-string">&quot;4&quot;</span>:
+    <span class="hljs-built_in">print</span>()
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1) Add Grade&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;2) Show all Grades&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;3) Filter Grades by Class&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;4) Exit&quot;</span>)
+    choice = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;&gt; &quot;</span>)
+
+    <span class="hljs-keyword">if</span> choice == <span class="hljs-string">&quot;1&quot;</span>:
+        name = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Name: &quot;</span>)
+        course = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Course: &quot;</span>)
+        grade = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Grade: &quot;</span>))
+        <span class="hljs-comment"># Insert row into the table</span>
+        
+
+    <span class="hljs-keyword">elif</span> choice == <span class="hljs-string">&quot;2&quot;</span>:
+        <span class="hljs-comment"># Query all rows from the table</span>
+        
+
+        rows = []
+        <span class="hljs-built_in">print</span>(rows)
+    <span class="hljs-keyword">elif</span> choice == <span class="hljs-string">&quot;3&quot;</span>:
+        <span class="hljs-built_in">filter</span> = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Course Filter: &quot;</span>)
+        <span class="hljs-comment"># Query all rows that match the course filter</span>
+        
+
+        rows = []
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Results: &quot;</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">{<span class="hljs-string">&#x27;Name&#x27;</span>:&lt;<span class="hljs-number">10</span>}</span> <span class="hljs-subst">{<span class="hljs-string">&#x27;Grade&#x27;</span>:&gt;<span class="hljs-number">6</span>}</span>&quot;</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;-&quot;</span> * <span class="hljs-number">18</span>)
+        <span class="hljs-keyword">for</span> name, grade <span class="hljs-keyword">in</span> rows:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">{name:&lt;<span class="hljs-number">10</span>}</span> <span class="hljs-subst">{grade:&gt;<span class="hljs-number">6.1</span>f}</span>&quot;</span>)
+
+connection.close()
+</code></pre>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Connect to a database called <code>grades.db</code> and establish the cursor.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create the <code>Grades</code> table as described in the reading above.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Insert grade entries into the table based on the user input.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Display all data in the table.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Display all data for a user supplied course.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Exit the program and restart to verify that the data is preserved in the database.</p>
+</li>
+</ol>
+<h2 dir="auto" id="discussion">Discussion</h2>
+<p dir="auto">How could a database be used in your project?  How are databases perhaps better than storing data in text files?</p>
+<h2 dir="auto" id="solution">Solution</h2>
+<ul dir="auto">
+<li dir="auto"><a href="main.py">main.py</a></li>
+</ul>
+
+</body>
+</html>
