@@ -30,6 +30,7 @@
 |How do I remove an empty directory?                      | `rmdir <folder>`                    |
 |How do I rename a file?                                  | `mv <oldfile> <newfile>`            |
 |How do I quickly display a file?                         | `cat <file>`                        |
+|How do I create an empty file?                           | `touch <file>`                      |
 |How do I open the current folder in Visual Studio Code?  | `code .`                            |
 |How do I run a python program?                           |                                     |
 |                                                         | Win: `py <file.py>`                 |
@@ -46,7 +47,7 @@
 
 1. Start Visual Studio Code in your current project folder.
 
-1. Create a `README.md` and a `.gitignore` file in your project
+1. Create a `README.md` and a `.gitignore` file in your project using the terminal.
 
 1. Create a file called `main.py` and write code to display `Hello World`.  Run your program from the command line.
 
@@ -54,9 +55,9 @@
 
 1. From the terminal, rename the file `main.py` to `hello.py`.  Re-display the list of files in your project folder and re-run your program from the terminal.
 
-1. Create a file called `secret.txt` and put a secret code inside of it.  Add `secret.txt` to your `.gitignore` file.  
+1. Create a file called `secret.txt` from the terminal and put a secret code inside of it.  Add `secret.txt` to your `.gitignore` file.  
 
-1. From the terminal, delete the `secret.txt` file and remove it from the `.gitignore` file.
+1. From the terminal, delete the `secret.txt` file.  Also remove it from the `.gitignore` file.
 
 ## Discussion
 
