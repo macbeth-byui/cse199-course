@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-g---flask-web-applications">Training G - Flask Web Applications</h1>
+<h2 dir="auto" id="background">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">A web application contains both a front-end and a back-end.  The front-end is what you see on the web browser.  The back-end runs on a remote server and does all of the processing needed to dynamically display data in the front-end.</p>
+</li>
+<li dir="auto">
+<p dir="auto">A back-end can interact with API's, databases, and other libraries to obtain data, change data, or analyze data.  The back-end can also manage user authorizations.</p>
+</li>
+<li dir="auto">
+<p dir="auto">There are many web application frameworks:</p>
+<ul dir="auto">
+<li dir="auto">JavaScript/TypeScript - Express, , React, Angular</li>
+<li dir="auto">Python: Django, Flask</li>
+<li dir="auto">Rust: Actix Web, Rocket</li>
+<li dir="auto">C#: ASP.Net</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">Web app frameworks handle multiple tasks making it easier for the programmer:</p>
+<ul dir="auto">
+<li dir="auto">Routing of GET/POST requests</li>
+<li dir="auto">Rendering of HTML outputs using template language which connects data from the code with the HTML tags</li>
+<li dir="auto">Handling of Error Conditions (ex: 404 - Not Found, 500 - Internal Server Error)</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">Flask has a very simple framework setup:</p>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">To create a flask app:</p>
+<pre><code class="code-line language-python" dir="auto">app = Flask(__name__)
+</code></pre>
+</li>
+<li dir="auto">
+<p dir="auto">To connect a route to a function:</p>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/&#x27;</span>, methods=[<span class="hljs-string">&quot;GET&quot;</span>]</span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">index</span>():
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello World&quot;</span>
+</code></pre>
+</li>
+<li dir="auto">
+<p dir="auto">To generate an HTML response:</p>
+<pre><code class="code-line language-python" dir="auto">first = <span class="hljs-string">&quot;Bob&quot;</span>
+last = <span class="hljs-string">&quot;Smith&quot;</span>
+<span class="hljs-keyword">return</span> render_template(<span class="hljs-string">&#x27;hello.html&#x27;</span>, first_name = first, last_name = last)
+</code></pre>
+</li>
+<li dir="auto">
+<p dir="auto">To add data variables to HTML (found in the <code>templates</code> folder):</p>
+<pre><code class="code-line language-html" dir="auto"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Hello {{first_name}} {{last_name}}&lt;\b&gt;
+</code></pre>
+</li>
+<li dir="auto">
+<p dir="auto">To add controls to HTML:</p>
+<pre><code class="code-line language-html" dir="auto">{% if first_name == &quot;Bob&quot; %}
+    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Hi Bob!<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+{% endif %}
+{% for letter in last_name %}
+    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{letter}}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+{% endfor %}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 dir="auto" id="example">Example</h2>
+<ol dir="auto">
+<li dir="auto">Copy the following code into a file called <code>main.py</code>:</li>
+</ol>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-comment"># Install the following packages: flask, requests, geopy</span>
+<span class="hljs-comment"># Windows:   py -m pip install &lt;package&gt;</span>
+<span class="hljs-comment"># Mac/Linux: pip3 install &lt;package&gt;</span>
+
+<span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, request, render_template
+<span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">from</span> geopy.geocoders <span class="hljs-keyword">import</span> Nominatim
+
+app = <span class="hljs-literal">None</span>
+geoapp = Nominatim(user_agent=<span class="hljs-string">&quot;wx&quot;</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">index</span>():
+    <span class="hljs-keyword">pass</span>
+
+
+<span class="hljs-comment"># API Calls:</span>
+<span class="hljs-comment">#    1) Get Latitude/Longitude from City, State:</span>
+<span class="hljs-comment">#       location = geoapp.geocode(citystate).raw</span>
+<span class="hljs-comment">#       print(location[&quot;lat&quot;], location[&quot;lon&quot;])</span>
+<span class="hljs-comment">#    2) Get Forecast Zone for Latitude and Longitude:</span>
+<span class="hljs-comment">#       https://api.weather.gov/points/latitude,longitude</span>
+<span class="hljs-comment">#       Zone Forecast HTML Request: result[&quot;properties&quot;][&quot;forecast&quot;]    </span>
+<span class="hljs-comment">#    3) Get Zone Forecast:</span>
+<span class="hljs-comment">#       Forecast Details: result[&quot;properties&quot;][&quot;periods&quot;]</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">weather</span>():
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    app.run()
+</code></pre>
+<ol dir="auto">
+<li dir="auto">Create a folder called <code>templates</code>.  Copy the following code and put into a file called <code>weather.html</code> inside the <code>templates</code> folder:</li>
+</ol>
+<pre><code class="code-line language-html" dir="auto"><span class="hljs-meta">&lt;!doctype <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Weather Forecast<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+    <span class="hljs-selector-tag">table</span>, <span class="hljs-selector-tag">th</span>, <span class="hljs-selector-tag">td</span> {
+      <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid black;
+      <span class="hljs-attribute">text-align</span>: center
+    }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Weather Forecast<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/weather&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;POST&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>&gt;</span>City, State: <span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;citystate&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Get Forecast<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Forecast for <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Period<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Temp (F)<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Wind Direction<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Wind Speed<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Precip Prob<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Forecast<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>%<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Create a Flask application.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create a route for the web server root (<code>http://127.0.0.1:5000/</code>) that will display <code>Hello World</code>.  Run the server and test it with a web browser.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Create a route for the weather app (<code>http://127.0.0.1:5000/weather/</code>)</p>
+</li>
+<li dir="auto">
+<p dir="auto">Use the <code>geopy</code> app to convert the city and state submitted by the HTML form to latitude and longitude.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Use the <code>https://api.weather.gov/points/</code> API to get the NWS zone from the latitude and longitude.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Use the forecast link in the zone response to get the forecast details.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Pass the forecast details to the HTML.  Use tags to display the forecast (only if data was read from the API calls)</p>
+</li>
+</ol>
+<h2 dir="auto" id="discussion">Discussion</h2>
+<p dir="auto">What web frameworks could you use in your project?  What is the benefit of using a web framework?</p>
+<h2 dir="auto" id="solution">Solution</h2>
+<ul dir="auto">
+<li dir="auto"><a href="main.py">main.py</a></li>
+<li dir="auto"><a href="weather.html">templates/weather.html</a></li>
+</ul>
+
+</body>
+</html>

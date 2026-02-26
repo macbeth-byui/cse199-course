@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Weather Forecast</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      text-align: center
+    }
+  </style>
+</head>
+<body>
+  <h1>Weather Forecast</h1>
+
+  <form action="/weather" method="POST">
+    <Label>City, State: </Label>
+    <input name="citystate"/>
+    <button type="submit">Get Forecast</button>
+  </form>
+
+  {% if location != None %}
+    <h2>Forecast for {{location}}</h2>
+    <table>
+      <tr>
+        <th>Period</th>
+        <th>Temp (F)</th>
+        <th>Wind Direction</th>
+        <th>Wind Speed</th>
+        <th>Precip Prob</th>
+        <th>Forecast</th>
+      </tr>
+      {% for period in wx %}
+        <tr>
+          <td>{{period.name}}<p><img src="{{period.icon}}"/></td>
+          <td>{{period.temperature}}</td>
+          <td>{{period.windDirection}}</td>
+          <td>{{period.windSpeed}}</td>
+          <td>{{period.probabilityOfPrecipitation.value}} %</td>
+          <td>{{period.detailedForecast}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+</body>
+</html>
