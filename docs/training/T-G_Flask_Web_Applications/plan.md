@@ -62,89 +62,89 @@
 
 1. Copy the following code into a file called `main.py`:
 
-```python
-# Install the following packages: flask, requests, geopy
-# Windows:   py -m pip install <package>
-# Mac/Linux: pip3 install <package>
+    ```python
+    # Install the following packages: flask, requests, geopy
+    # Windows:   py -m pip install <package>
+    # Mac/Linux: pip3 install <package>
 
-from flask import Flask, request, render_template
-import requests
-from geopy.geocoders import Nominatim
+    from flask import Flask, request, render_template
+    import requests
+    from geopy.geocoders import Nominatim
 
-app = None
-geoapp = Nominatim(user_agent="wx")
+    app = None
+    geoapp = Nominatim(user_agent="wx")
 
-def index():
-    pass
+    def index():
+        pass
 
 
-# API Calls:
-#    1) Get Latitude/Longitude from City, State:
-#       location = geoapp.geocode(citystate).raw
-#       print(location["lat"], location["lon"])
-#    2) Get Forecast Zone for Latitude and Longitude:
-#       https://api.weather.gov/points/latitude,longitude
-#       Zone Forecast HTML Request: result["properties"]["forecast"]    
-#    3) Get Zone Forecast:
-#       Forecast Details: result["properties"]["periods"]
+    # API Calls:
+    #    1) Get Latitude/Longitude from City, State:
+    #       location = geoapp.geocode(citystate).raw
+    #       print(location["lat"], location["lon"])
+    #    2) Get Forecast Zone for Latitude and Longitude:
+    #       https://api.weather.gov/points/latitude,longitude
+    #       Zone Forecast HTML Request: result["properties"]["forecast"]    
+    #    3) Get Zone Forecast:
+    #       Forecast Details: result["properties"]["periods"]
 
-def weather():
-    pass
+    def weather():
+        pass
 
-if __name__ == "__main__":
-    app.run()
-```
+    if __name__ == "__main__":
+        app.run()
+    ```
 
 1. Create a folder called `templates`.  Copy the following code and put into a file called `weather.html` inside the `templates` folder:
 
-```html
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Weather Forecast</title>
-  <style>
-    table, th, td {
-      border: 1px solid black;
-      text-align: center
-    }
-  </style>
-</head>
-<body>
-  <h1>Weather Forecast</h1>
+    ```html
+    <!doctype html>
+    <html lang="en">
+    <head>
+    <title>Weather Forecast</title>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        text-align: center
+        }
+    </style>
+    </head>
+    <body>
+    <h1>Weather Forecast</h1>
 
-  <form action="/weather" method="POST">
-    <Label>City, State: </Label>
-    <input name="citystate"/>
-    <button type="submit">Get Forecast</button>
-  </form>
+    <form action="/weather" method="POST">
+        <Label>City, State: </Label>
+        <input name="citystate"/>
+        <button type="submit">Get Forecast</button>
+    </form>
 
 
-    <h2>Forecast for </h2>
-    <table>
-      <tr>
-        <th>Period</th>
-        <th>Temp (F)</th>
-        <th>Wind Direction</th>
-        <th>Wind Speed</th>
-        <th>Precip Prob</th>
-        <th>Forecast</th>
-      </tr>
-
+        <h2>Forecast for </h2>
+        <table>
         <tr>
-          <td><p><img src=""/></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>%</td>
-          <td></td>
+            <th>Period</th>
+            <th>Temp (F)</th>
+            <th>Wind Direction</th>
+            <th>Wind Speed</th>
+            <th>Precip Prob</th>
+            <th>Forecast</th>
         </tr>
 
-    </table>
+            <tr>
+            <td><p><img src=""/></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>%</td>
+            <td></td>
+            </tr>
+
+        </table>
 
 
-</body>
-</html>
-```
+    </body>
+    </html>
+    ```
 
 1. Create a Flask application.
 
@@ -167,4 +167,4 @@ What web frameworks could you use in your project?  What is the benefit of using
 ## Solution
 
 * [main.py](main.py)
-* [templates/weather.html](weather.html)
+* [templates/weather.html](templates/weather.html)
