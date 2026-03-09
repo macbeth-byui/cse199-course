@@ -28,11 +28,11 @@
 
     ```python
     def average(numbers):
-    total = 0
-    for number in numbers:
-        total += number
-    avg = total / len(numbers)
-    return avg
+        total = 0
+        for number in numbers:
+            total += number
+        avg = total / len(numbers)
+        return avg
 
     def main():
         my_numbers = [3,1,6,3,5,4,6,2]
