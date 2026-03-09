@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\cmacbeth\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="training-h---learning-a-new-language">Training H - Learning a New Language</h1>
+<h2 dir="auto" id="background">Background</h2>
+<ul dir="auto">
+<li dir="auto">
+<p dir="auto">One benefit of learning to code is that it enables you to quickly learn new languages.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Most all languages have the same types of tools:</p>
+<ul dir="auto">
+<li dir="auto">Loops</li>
+<li dir="auto">Variables</li>
+<li dir="auto">Functions</li>
+<li dir="auto">Input/Output</li>
+<li dir="auto">Data Structures (e.g. Lists)</li>
+</ul>
+</li>
+<li dir="auto">
+<p dir="auto">To learn a new language:</p>
+<ol dir="auto">
+<li dir="auto">Setup your environment</li>
+<li dir="auto">Write the <code>Hello World</code> program</li>
+<li dir="auto">Take a simple program in the language you know and then rewrite it in the language you want to learn.</li>
+</ol>
+</li>
+</ul>
+<h2 dir="auto" id="example">Example</h2>
+<ol dir="auto">
+<li dir="auto">
+<p dir="auto">Goto GitHub and create a new private repository called <code>Learning</code>.</p>
+</li>
+<li dir="auto">
+<p dir="auto">After the repository is created, click on <code>Create a codespace</code>.  This will start a virtual environment online using Visual Studio Code.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Implement <code>Hello World</code> in Python, C#, and C++.  Make sure you install the Visual Studio Code extensions when prompted.  Notice how each language uses a different syntax but has the same base components.</p>
+</li>
+<li dir="auto">
+<p dir="auto">Copy the following code into a file called <code>stats.py</code>:</p>
+<pre><code class="code-line language-python" dir="auto"><span class="hljs-keyword">def</span> <span class="hljs-title function_">average</span>(<span class="hljs-params">numbers</span>):
+total = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> numbers:
+    total += number
+avg = total / <span class="hljs-built_in">len</span>(numbers)
+<span class="hljs-keyword">return</span> avg
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    my_numbers = [<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">2</span>]
+    my_avg = average(my_numbers)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Average = <span class="hljs-subst">{my_avg}</span>&quot;</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    main()
+</code></pre>
+</li>
+<li dir="auto">
+<p dir="auto">Rewrite the code using C# and then rewrite it using C++.</p>
+</li>
+</ol>
+<h2 dir="auto" id="solution">Solution</h2>
+<ul dir="auto">
+<li dir="auto"><a href="hello.py">hello.py</a></li>
+<li dir="auto"><a href="hello.cs">hello.cs</a></li>
+<li dir="auto"><a href="hello.cpp">hello.cpp</a></li>
+<li dir="auto"><a href="stats.py">stats.py</a></li>
+<li dir="auto"><a href="stats.cs">stats.cs</a></li>
+<li dir="auto"><a href="stats.cpp">stats.cpp</a></li>
+</ul>
+
+</body>
+</html>
